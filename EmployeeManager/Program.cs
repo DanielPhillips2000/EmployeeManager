@@ -14,8 +14,11 @@ namespace EmployeeManager
             Console.WriteLine("Please enter number of hours worked");
             employee.HoursWorked = Convert.ToDouble(Console.ReadLine());
 
-            if (HoursVal(employee.HoursWorked) == false)
+            while (HoursVal(employee.HoursWorked) == false)
             {
+                Console.WriteLine("Value entered invalid, please enter new value.");
+                employee.HoursWorked = Convert.ToDouble(Console.ReadLine());
+
 
             }
 
@@ -58,15 +61,15 @@ namespace EmployeeManager
             }
 
         }
-        public static Boolean HoursVal(double EhoursWorked)
+        public static Boolean HoursVal(double eHoursWorked)
         {
-            if (EhoursWorked < 1)
+            if (eHoursWorked < 1)
             {
                 return false;
                 //Console.WriteLine("Invalid work hours please change");
                 //EhoursWorked = Convert.ToDouble(Console.ReadLine());
             }
-            else if (EhoursWorked > 100)
+            else if (eHoursWorked > 100)
             {
                 return false;
                 //Console.WriteLine("Invalid work hours please change");
