@@ -19,11 +19,12 @@ namespace EmployeeManager
                 Console.WriteLine("Value entered invalid, please enter new value.");
                 employee.HoursWorked = Convert.ToDouble(Console.ReadLine());
 
-
             }
 
             Console.WriteLine("Please Enter Name");
             employee.EmployeeName = Console.ReadLine();
+
+
 
             Console.WriteLine("Please Enter ID");
             employee.EmployeeID = Console.ReadLine();
@@ -77,6 +78,46 @@ namespace EmployeeManager
             }
             else
                 return true;
+        }
+
+        public static Boolean IDVal(string eID)
+        {
+            if( eID.Length == 3)
+            {
+                int fID = Convert.ToInt32(eID.Substring(0,0));
+                string sID = eID.Substring(1, 1);
+                string tID = eID.Substring(2, 2);
+
+                //if (Char.(fID) );
+                //{
+                //    if (sID != ) ;
+                //    {
+                //        if (fID != ) ;
+                //        {
+
+                //            return true;
+                //        }
+                //        else
+                //        {
+                //            return false;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        return false;
+                //    }
+                //}
+                //else
+                //{
+                //    return false;
+                //}
+                
+            }
+            else
+            {
+                return false;
+            }
+
         }
         
     }
