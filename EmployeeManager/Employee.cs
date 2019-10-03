@@ -1,62 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace EmployeeManager
 {
-    class Program
+    class Employee
     {
-
-        static Regex IsNumber = new Regex(@"^[0-9]+$");
-        static Regex IsLetter = new Regex(@"^[a-zA-Z]");
-
-        static void Main(string[] args)
+        public Employee(string eName, int eID, int eHoursWorked)
         {
-            var employee = new Employee();
-            Console.WriteLine("Please enter number of hours worked");
-            employee.HoursWorked = Convert.ToDouble(Console.ReadLine());
-
-            while (HoursVal(employee.HoursWorked) == false)
-            {
-                Console.WriteLine("Value entered invalid, please enter new value.");
-                employee.HoursWorked = Convert.ToDouble(Console.ReadLine());
-
-            }
-
-            Console.WriteLine("Please Enter Name");
-            employee.EmployeeName = Console.ReadLine();
-
-
-
-            Console.WriteLine("Please Enter ID");
-            employee.EmployeeID = Console.ReadLine();
-
-            while (IDVal(employee.EmployeeID) == false)
-            {
-                Console.WriteLine("Invalid ID, please enter a new ID");
-                employee.EmployeeID = Console.ReadLine();
-            }
-
-
-            Console.WriteLine("Emloyee Name: " + employee.EmployeeName);
-            Console.WriteLine("Employee ID: " + employee.EmployeeID);
-            Console.WriteLine("Hours Worked: " + employee.HoursWorked);
-
-
-            Console.WriteLine("Weekly Wage: " + Convert.ToDecimal(string.Format("{0:F2}", Overtime(employee.HoursWorked, employee.HourlyRate, employee.OvertimeRate))));
-
+            EmployeeName = eName;
+            EmployeeID = eID;
+            HoursWorked = eHoursWorked;
+            HourlyRate = 9.5;
+            
         }
 
-        public class Employee
+        
+        public string ToString(Employee e)
         {
-            public string EmployeeName { get; set; }
-            public string EmployeeID { get; set; }
-            public double HoursWorked { get; set; }
-            public double HourlyRate = 9.5;
-            public double OvertimeRate = 14.25;
-            //public double WeeklyWage { get { return HoursWorked * HourlyRate; } }
+            string ToString = (e.EmployeeName + " " + e.EmployeeID);
 
+            return ToString;
         }
-
         public static double Overtime(double EhoursWorked, double EhourlyRate, double EOvertimeRate)
         {
             if (EhoursWorked < 40)
@@ -65,7 +31,7 @@ namespace EmployeeManager
             }
             else
             {
-                return ((EhoursWorked - 40) * EOvertimeRate) + (40 * EhourlyRate); 
+                return ((EhoursWorked - 40) * EOvertimeRate) + (40 * EhourlyRate);
             }
 
         }
@@ -86,7 +52,6 @@ namespace EmployeeManager
             else
                 return true;
         }
-
         public static Boolean IDVal(string eID)
         {
             if (eID.Length == 3)
@@ -118,7 +83,6 @@ namespace EmployeeManager
                 {
                     return false;
                 }
-
             }
             else
             {
@@ -126,6 +90,13 @@ namespace EmployeeManager
             }
 
         }
+        static Regex IsNumber = new Regex(@"^[0-9]+$");
+        static Regex IsLetter = new Regex(@"^[a-zA-Z]");
+
+        public string EmployeeName { get; set; }
+        public int EmployeeID { get; set; }
+        public int HoursWorked { get; set; }
+        public double HourlyRate { get; set; }
 
     }
 }
