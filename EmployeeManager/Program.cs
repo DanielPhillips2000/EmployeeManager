@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace EmployeeManager
 {
     class Program
     {
         public string strHoursWorked;
-        
-        
+        public string NumberPattern = (@"^0-9");
+
+        static Regex IsNumber = new Regex(@"^[0-9]+$");
+        static Regex IsLetter = new Regex(@"^[a-z][A-Z]+$");
 
         static void Main(string[] args)
         {
@@ -28,6 +31,12 @@ namespace EmployeeManager
 
             Console.WriteLine("Please Enter ID");
             employee.EmployeeID = Console.ReadLine();
+
+            while (IDVal(employee.EmployeeID) == false)
+            {
+                Console.WriteLine("Invalid ID, please enter a new ID");
+                employee.EmployeeID = Console.ReadLine();
+            }
 
 
             Console.WriteLine("Emloyee Name: " + employee.EmployeeName);
@@ -84,34 +93,26 @@ namespace EmployeeManager
         {
             if( eID.Length == 3)
             {
-                int fID = Convert.ToInt32(eID.Substring(0,0));
+                string fID = eID.Substring(0,0);
                 string sID = eID.Substring(1, 1);
                 string tID = eID.Substring(2, 2);
 
-                //if (Char.(fID) );
-                //{
-                //    if (sID != ) ;
-                //    {
-                //        if (fID != ) ;
-                //        {
+                if (IsNumber.IsMatch(fID))
+                {
+                    if (IsLetter.IsMatch(sID) && IsLetter.IsMatch(tID))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
 
-                //            return true;
-                //        }
-                //        else
-                //        {
-                //            return false;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        return false;
-                //    }
-                //}
-                //else
-                //{
-                //    return false;
-                //}
-                
             }
             else
             {
