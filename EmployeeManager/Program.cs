@@ -9,7 +9,7 @@ namespace EmployeeManager
         public string NumberPattern = (@"^0-9");
 
         static Regex IsNumber = new Regex(@"^[0-9]+$");
-        static Regex IsLetter = new Regex(@"^[a-z][A-Z]+$");
+        static Regex IsLetter = new Regex(@"^[a-zA-Z]");
 
         static void Main(string[] args)
         {
@@ -93,15 +93,23 @@ namespace EmployeeManager
         {
             if( eID.Length == 3)
             {
-                string fID = eID.Substring(0,0);
-                string sID = eID.Substring(1, 1);
-                string tID = eID.Substring(2, 2);
+                string fID = eID.Substring(0);
+                string sID = eID.Substring(1);
+                string tID = eID.Substring(2);
 
-                if (IsNumber.IsMatch(fID))
+                if (IsLetter.IsMatch(fID))
                 {
-                    if (IsLetter.IsMatch(sID) && IsLetter.IsMatch(tID))
+                    if (IsNumber.IsMatch(sID))
                     {
-                        return true;
+                        if (IsNumber.IsMatch(tID))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                        
                     }
                     else
                     {
